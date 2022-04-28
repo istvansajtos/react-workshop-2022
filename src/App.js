@@ -1,12 +1,10 @@
 import './App.css';
+import Amount from './components/Amount';
 
 function App() {
   return (
     <div className="App">
-		<label>
-			<span>Euros</span>
-			<input placeholder="0" step="0.1" type="number" />
-		</label>
+		<Amount name="Euros" />
     </div>
   );
 }
