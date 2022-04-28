@@ -1,3 +1,9 @@
+.amount {
+    margin: 3px;
+    padding: 3px;
+    display: block;
+}
+
 .amount input {
     border: 3px solid #7f7b7b;
 }
