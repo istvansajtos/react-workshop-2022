@@ -1,0 +1,7 @@
+.amount input {
+    border: 3px solid #7f7b7b;
+}
+
+.amount input.negative {
+    border: 3px solid #f00;
+}
