@@ -1,0 +1,7 @@
+.converter {
+    margin: 3px;
+    padding: 3px;
+    display: inline-flex;
+    flex-direction: column;
+    border: 3px solid #888;
+}
