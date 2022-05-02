@@ -9,8 +9,8 @@ function App() {
 	return (
 		<ThemeContext.Provider value={{theme: theme}}>
 			<div className={'App ' + theme}>
-				<Converter cryptoName={"BTC"} exchangeRate={992} />
-				<Converter cryptoName={"ETH"} exchangeRate={1.2} />
+				<Converter cryptoName={"BTC"} exchangeRate={992} header={<strong>Bitcoin converter</strong>}/>
+				<Converter cryptoName={"ETH"} exchangeRate={1.2} header={<strong>Ethernium converter</strong>}/>
 				<label>
 					<span>Theme </span>
 					<select
