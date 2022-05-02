@@ -3,14 +3,26 @@ import './App.css';
 import Converter from './components/Converter';
 import ThemeContext from './ThemeContext';
 
+const MAX_UNDISTURBED_CONVERSIONS = 5;
+
 function App() {
 	const [theme, setTheme] = useState("light");
+	const [conversions, setConversions] = useState(1);
+
+	const onCoversionChange = () => {
+		if (conversions === MAX_UNDISTURBED_CONVERSIONS) {
+			alert('Convert without limits by becoming a premium user')
+			setConversions(1);
+		} else {
+			setConversions(conversions + 1);
+		}
+	}
 
 	return (
 		<ThemeContext.Provider value={{theme: theme}}>
 			<div className={'App ' + theme}>
-				<Converter cryptoName={"BTC"} exchangeRate={992} header={<strong>Bitcoin converter</strong>}/>
-				<Converter cryptoName={"ETH"} exchangeRate={1.2} header={<strong>Ethernium converter</strong>}/>
+				<Converter cryptoName={"BTC"} exchangeRate={992} onChange={onCoversionChange} header={<strong>Bitcoin converter</strong>}/>
+				<Converter cryptoName={"ETH"} exchangeRate={1.2} onChange={onCoversionChange} header={<strong>Ethernium converter</strong>}/>
 				<label>
 					<span>Theme </span>
 					<select
