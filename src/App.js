@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Converter from './Converter.js';
 import ThemeContext, { themes }  from './ThemeContext.js';
@@ -14,6 +14,14 @@ function App() {
       alert('Convert without limits by becoming a premium user');
     }
   }
+
+  useEffect(()=> {
+    fetch('http://localhost:3003/data')
+    .then(resp => resp.json())
+    .then(data => {
+      console.log(data);
+    })
+  }, [])
 
   return (
     <div className="App">
