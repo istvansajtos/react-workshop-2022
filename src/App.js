@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Converter from './components/Converter';
 import ThemeContext from './ThemeContext';
@@ -17,6 +17,14 @@ function App() {
 			setConversions(conversions + 1);
 		}
 	}
+
+  useEffect(()=> {
+    fetch('http://localhost:3003/data')
+    .then(resp => resp.json())
+    .then(data => {
+      console.log(data);
+    })
+  }, [])
 
 	return (
 		<ThemeContext.Provider value={{theme: theme}}>
