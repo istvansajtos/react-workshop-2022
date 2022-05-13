@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import './Amount.css';
 
-function Amount() {
+function Amount(props) {
   const [negative, setNegative] = useState(false);
-  const handleChange = event => setNegative(event.target.value < 0 ? true : false);
+  const handleChange = event => {
+    setNegative(event.target.value < 0 ? true : false);
+    props.onChangeHandler(event);
+  }
 
   return (
     <div>
-      <label htmlFor="euros">Euros</label>
-      <input id="euros" type="number" className={negative ? 'redborder' : ""} onChange={handleChange} />
+      <label htmlFor={props.name}>{props.name}</label>
+      <input id={props.name} type="number" className={negative ? 'redborder' : ""} onChange={handleChange} value={props.value}/>
     </div>
   );
 }
