@@ -9,6 +9,7 @@ function App() {
 	const [theme, setTheme] = useState("light");
 	const [conversions, setConversions] = useState(1);
 	const [isPremium, setIsPremium] = useState(false)
+	const [conversionList, setConversionList] = useState([]);
 
 	const onCoversionChange = () => {
 		if (!isPremium && conversions === MAX_UNDISTURBED_CONVERSIONS) {
@@ -23,15 +24,16 @@ function App() {
     fetch('http://localhost:3003/data')
     .then(resp => resp.json())
     .then(data => {
-      console.log(data);
+      setConversionList(data);
     })
   }, [])
 
 	return (
 		<ThemeContext.Provider value={{theme: theme}}>
 			<div className={'App ' + theme}>
-				<Converter cryptoName={"BTC"} exchangeRate={992} onChange={onCoversionChange} header={<strong>Bitcoin converter</strong>}/>
-				<Converter cryptoName={"ETH"} exchangeRate={1.2} onChange={onCoversionChange} header={<strong>Ethernium converter</strong>}/>
+				{conversionList.map((item => {
+					return <Converter key={item.id} cryptoName={item.label} exchangeRate={item.conversionRate} onChange={onCoversionChange} header={<strong>{item.name} converter</strong>}/>
+				}))}
 				<br />	
 				<label style={{"margin":"1rem"}}>
 					<span>Theme </span>
