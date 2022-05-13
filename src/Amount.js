@@ -11,7 +11,7 @@ function Amount(props) {
   return (
     <div>
       <label htmlFor={props.name}>{props.name}</label>
-      <input id={props.name} type="number" className={negative ? 'redborder' : ""} onChange={handleChange} value={props.value}/>
+      <input id={props.name} type="number" className={negative ? 'redborder' : ""} onChange={handleChange} value={props.value} readOnly={props.readOnly}/>
     </div>
   );
 }
