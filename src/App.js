@@ -8,9 +8,10 @@ const MAX_UNDISTURBED_CONVERSIONS = 5;
 function App() {
 	const [theme, setTheme] = useState("light");
 	const [conversions, setConversions] = useState(1);
+	const [isPremium, setIsPremium] = useState(false)
 
 	const onCoversionChange = () => {
-		if (conversions === MAX_UNDISTURBED_CONVERSIONS) {
+		if (!isPremium && conversions === MAX_UNDISTURBED_CONVERSIONS) {
 			alert('Convert without limits by becoming a premium user')
 			setConversions(1);
 		} else {
@@ -31,7 +32,8 @@ function App() {
 			<div className={'App ' + theme}>
 				<Converter cryptoName={"BTC"} exchangeRate={992} onChange={onCoversionChange} header={<strong>Bitcoin converter</strong>}/>
 				<Converter cryptoName={"ETH"} exchangeRate={1.2} onChange={onCoversionChange} header={<strong>Ethernium converter</strong>}/>
-				<label>
+				<br />	
+				<label style={{"margin":"1rem"}}>
 					<span>Theme </span>
 					<select
 						onChange={event => setTheme(event.target.value)}
@@ -41,6 +43,15 @@ function App() {
 						<option value="light">Light</option>
 					</select>
 				</label>
+				<span style={{"margin":"1rem"}} >
+				{isPremium ? (
+					<strong>💎 Premium conversion</strong>
+				) : (
+					<button onClick={() => setIsPremium(true)}>
+					😎 Become premium
+					</button>   
+				)}
+				</span>
 			</div>
 		</ThemeContext.Provider>
 	);
