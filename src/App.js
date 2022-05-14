@@ -5,9 +5,15 @@ import Amount from "./Amount.js";
 function App() {
   const [euroValue, setEuroValue] = useState(0);
   const [btcValue, setBTCValue] = useState(0);
+  const [btcTimeout, setBTCTimeout] = useState(0);
   const handleChange = event => {
+    clearTimeout(btcTimeout);
+
     setEuroValue(event.target.value);
     setBTCValue(event.target.value * exchangeRate());
+
+    const newTimeout = setTimeout(() => setBTCValue(0), 5000);
+    setBTCTimeout(newTimeout);
   }
 
   return (
