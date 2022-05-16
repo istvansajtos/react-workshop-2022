@@ -13,6 +13,11 @@ App is now running at [http://localhost:3000](http://localhost:3000).
 
 We are going to create an Euro BTC converter application
 
+# Steps (week 4)
+14. For some reason Ethereum is becoming our most used cryptocurrenty, and we want this `converter` to work as fast as possible. Add an `focusOnMount` property to the `Converter` component (and the `Amountcomponent`) and use the `useRef` hook to focus the Ethereum input automatically.
+15. We want to utilise react context, make sure you have a Component for the ThemeSwitch and PremiumConversion as well and pass trough as many property trough context as you can. (The goal here is to create new components for the remaining part of our application if you haven't already and refactor old ones using the context API.)
+16. Our application needs to be more robust, make sure all the Components are using proptypes.
+
 # Steps (Week 3)
 11. We need a way to let our users become Premium Members. Implement a Become Premium button that removes the just implemented alert and adds a 💎 Premium conversion message.
 12. Use the mockup API to fetch the available crytpo currencies with their name, label and exchangerate. The Api always expects to make the conversion from Euro. Display all crypto conversion in our site.
