@@ -1,7 +1,8 @@
-import { useContext } from "react"
-import ThemeContext from "../ThemeContext"
+import { useContext } from "react";
+import ThemeContext from "../ThemeContext";
+import PropTypes from 'prop-types';
 
-export default function ThemeSelector() {
+function ThemeSelector() {
     const appContext = useContext(ThemeContext);
     return(
         <label style={{"margin":"1rem"}}>
@@ -16,3 +17,10 @@ export default function ThemeSelector() {
         </label>
     )
 }
+
+ThemeSelector.propTypes = {
+    theme: PropTypes.string,
+    setTheme: PropTypes.func
+}
+
+export default ThemeSelector;

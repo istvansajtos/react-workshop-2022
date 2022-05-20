@@ -5,6 +5,7 @@ import ThemeContext from './ThemeContext';
 import useCachedState from './hooks/useCachedState';
 import ThemeSelector from './components/ThemeSelector';
 import PremiumButton from './components/PremiumButton';
+import PropTypes from 'prop-types';
 
 const MAX_UNDISTURBED_CONVERSIONS = 5;
 
@@ -48,6 +49,13 @@ function App() {
 			</div>
 		</ThemeContext.Provider>
 	);
+}
+
+App.propTypes = {
+	theme: PropTypes.string,
+	conversions: PropTypes.number,
+	isPremium: PropTypes.bool,
+	conversionList: PropTypes.array
 }
 
 export default App;

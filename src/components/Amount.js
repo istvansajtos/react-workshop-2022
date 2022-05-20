@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 import './amount.css';
 import ThemeContext from '../ThemeContext';
 
-export default function Amount({name, value, onChange, disabled, focusOnMount}) {
+function Amount({name, value, onChange, disabled, focusOnMount}) {
     const [isNegative, setIsNegative] = useState(false);
 
     const theme = useContext(ThemeContext);
@@ -26,7 +27,7 @@ export default function Amount({name, value, onChange, disabled, focusOnMount}) 
                 ref={inputRef}
                 className={isNegative ? 'negative' : ''}
                 onChange={onChangeHandler}
-                value={value}
+                value={value.toFixed(4)}
                 readOnly={disabled}
                 placeholder="0"
                 step="0.1"
@@ -35,3 +36,13 @@ export default function Amount({name, value, onChange, disabled, focusOnMount}) 
         </label>
     );
 }
+
+Amount.propTypes = {
+    name: PropTypes.string,
+    value: PropTypes.number,
+    onChange: PropTypes.func,
+    disabled: PropTypes.bool,
+    focusOnMount: PropTypes.bool
+}
+
+export default Amount;

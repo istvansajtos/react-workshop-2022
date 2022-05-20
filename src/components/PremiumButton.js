@@ -1,7 +1,8 @@
-import { useContext } from "react"
-import ThemeContext from "../ThemeContext"
+import { useContext } from "react";
+import ThemeContext from "../ThemeContext";
+import PropTypes from 'prop-types';
 
-export default function PremiumButton() {
+function PremiumButton() {
     const appContext = useContext(ThemeContext);
     return(
         <span style={{"margin":"1rem"}} >
@@ -15,3 +16,10 @@ export default function PremiumButton() {
         </span>
     )
 }
+
+PremiumButton.propTypes = {
+    isPremium: PropTypes.bool,
+    setIsPremium: PropTypes.func
+}
+
+export default PremiumButton;
