@@ -3,6 +3,8 @@ import './App.css';
 import Converter from './components/Converter';
 import ThemeContext from './ThemeContext';
 import useCachedState from './hooks/useCachedState';
+import ThemeSelector from './components/ThemeSelector';
+import PremiumButton from './components/PremiumButton';
 
 const MAX_UNDISTURBED_CONVERSIONS = 5;
 
@@ -30,31 +32,19 @@ function App() {
   }, [])
 
 	return (
-		<ThemeContext.Provider value={{theme: theme}}>
+		<ThemeContext.Provider value={{
+			theme: theme,
+			setTheme: setTheme,
+			isPremium: isPremium,
+			setIsPremium: setIsPremium
+		}}>
 			<div className={'App ' + theme}>
 				{conversionList.map((item => {
 					return <Converter key={item.id} focusOnMount={item.label === "ETH"} cryptoName={item.label} exchangeRate={item.conversionRate} onChange={onCoversionChange} header={<strong>{item.name} converter</strong>}/>
 				}))}
 				<br />
-				<label style={{"margin":"1rem"}}>
-					<span>Theme </span>
-					<select
-						onChange={event => setTheme(event.target.value)}
-						value={theme}
-					>
-						<option value="dark">Dark</option>
-						<option value="light">Light</option>
-					</select>
-				</label>
-				<span style={{"margin":"1rem"}} >
-				{isPremium ? (
-					<strong>💎 Premium conversion</strong>
-				) : (
-					<button onClick={() => setIsPremium(true)}>
-					😎 Become premium
-					</button>   
-				)}
-				</span>
+				<ThemeSelector />
+				<PremiumButton />
 			</div>
 		</ThemeContext.Provider>
 	);
