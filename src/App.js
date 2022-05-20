@@ -33,9 +33,9 @@ function App() {
 		<ThemeContext.Provider value={{theme: theme}}>
 			<div className={'App ' + theme}>
 				{conversionList.map((item => {
-					return <Converter key={item.id} cryptoName={item.label} exchangeRate={item.conversionRate} onChange={onCoversionChange} header={<strong>{item.name} converter</strong>}/>
+					return <Converter key={item.id} focusOnMount={item.label === "ETH"} cryptoName={item.label} exchangeRate={item.conversionRate} onChange={onCoversionChange} header={<strong>{item.name} converter</strong>}/>
 				}))}
-				<br />	
+				<br />
 				<label style={{"margin":"1rem"}}>
 					<span>Theme </span>
 					<select

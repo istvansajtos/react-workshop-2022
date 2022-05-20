@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Amount from './Amount';
 import './converter.css';
 
-export default function Converter ({cryptoName, exchangeRate, header, onChange}) {
+export default function Converter ({cryptoName, exchangeRate, header, onChange, focusOnMount}) {
     const [value, setValue] = useState(0);
 
     const onChangeHandler = (value) => {
@@ -13,7 +13,7 @@ export default function Converter ({cryptoName, exchangeRate, header, onChange})
     return (
         <div className='converter'>
             {header && <div className="converter-header">{header}</div>}
-            <Amount name="Euros" value={value} onChange={onChangeHandler}/>
+            <Amount name="Euros" value={value} onChange={onChangeHandler} focusOnMount={focusOnMount} />
             <Amount name={cryptoName} value={parseFloat(value * exchangeRate).toFixed(4)} disabled />
         </div>
     );
