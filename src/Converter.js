@@ -2,10 +2,11 @@ import Amount from './Amount.js';
 import './Converter.css';
 import React, {useState} from 'react';
 
-function Converter({cryptoName, exchangeRate, header}) {
+function Converter({cryptoName, exchangeRate, header, onChange}) {
     const [convertedValue, setConvertedValue] = useState(0);
     const handleChange = event => {
         setConvertedValue(event.target.value * exchangeRate);
+        onChange();
     }
 
     return (
