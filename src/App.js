@@ -9,8 +9,8 @@ function App() {
   return (
     <div className="App">
       <ThemeContext.Provider value={theme}>
-        <Converter cryptoName="$BTC" exchangeRate="995" />
-        <Converter cryptoName="$ETH" exchangeRate="1.2" />
+        <Converter cryptoName="$BTC" exchangeRate="995" header={<strong>BTC converter</strong>} />
+        <Converter cryptoName="$ETH" exchangeRate="1.2" header={<strong>ETH converter</strong>} />
       </ThemeContext.Provider>
 
       <br/>
