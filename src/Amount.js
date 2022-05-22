@@ -12,15 +12,11 @@ function Amount(props) {
 
   const theme = useContext(ThemeContext);
 
-  console.log(theme);
-
   return (
-    <div>
-      <span style={{ background: theme.background, color: theme.foreground }}>
-      <label htmlFor={props.name}>{props.name}</label>
-      <input id={props.name} type="number" className={negative ? 'redborder' : ""} onChange={handleChange} value={props.value} readOnly={props.readOnly}/>
-      </span>
-    </div>
+    <span style={{ background: theme.background, color: theme.foreground }}>
+      <label htmlFor={props.name}>{props.name}</label><br/>
+      <input id={props.name} type="number" className={negative ? 'redborder' : ""} onChange={handleChange} value={props.value} readOnly={props.readOnly}/><br/>
+    </span>
   );
 }
 
