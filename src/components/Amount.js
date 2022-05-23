@@ -11,7 +11,7 @@ function Amount({name, value, onChange, disabled, focusOnMount}) {
 
     const onChangeHandler = (event) => {
         setIsNegative(event.currentTarget.value < 0);
-        onChange(event.currentTarget.value);
+        onChange(Number(event.currentTarget.value));
     }
 
     useEffect(()=>{
@@ -27,7 +27,7 @@ function Amount({name, value, onChange, disabled, focusOnMount}) {
                 ref={inputRef}
                 className={isNegative ? 'negative' : ''}
                 onChange={onChangeHandler}
-                value={value.toFixed(4)}
+                value={Number(parseFloat(value).toFixed(4))}
                 readOnly={disabled}
                 placeholder="0"
                 step="0.1"
