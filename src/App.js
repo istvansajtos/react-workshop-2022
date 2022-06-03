@@ -4,16 +4,7 @@ import Converter from './Converter.js';
 import ThemeContext, { themes }  from './ThemeContext.js';
 
 function App() {
-  const conversionTreshold = 5;
-  const [convertCount, setConvertCount] = useState(0);
   const [theme, setTheme] = useState(themes.light);
-  const count = () => {
-    setConvertCount(convertCount + 1);
-
-    if(convertCount == conversionTreshold) {
-      alert('Convert without limits by becoming a premium user');
-    }
-  }
 
   useEffect(()=> {
     fetch('http://localhost:3003/data')
@@ -26,8 +17,8 @@ function App() {
   return (
     <div className="App">
       <ThemeContext.Provider value={theme}>
-        <Converter cryptoName="$BTC" exchangeRate="995" header={<strong>BTC converter</strong>} onChange={count} />
-        <Converter cryptoName="$ETH" exchangeRate="1.2" header={<strong>ETH converter</strong>} onChange={count} />
+        <Converter cryptoName="$BTC" exchangeRate="995" header={<strong>BTC converter</strong>} />
+        <Converter cryptoName="$ETH" exchangeRate="1.2" header={<strong>ETH converter</strong>} />
       </ThemeContext.Provider>
 
       <br/>
