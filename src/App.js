@@ -6,12 +6,13 @@ import ThemeContext, { themes }  from './ThemeContext.js';
 function App() {
   const [theme, setTheme] = useState(themes.light);
   const [premium, setPremium] = useState(false);
+  const [items, setItems] = useState([]);
 
   useEffect(()=> {
     fetch('http://localhost:3003/data')
     .then(resp => resp.json())
     .then(data => {
-      console.log(data);
+      setItems(data);
     })
   }, [])
 
@@ -23,8 +24,9 @@ function App() {
   return (
     <div className="App">
       <ThemeContext.Provider value={theme}>
-        <Converter cryptoName="$BTC" exchangeRate="995" header={<strong>BTC converter</strong>} />
-        <Converter cryptoName="$ETH" exchangeRate="1.2" header={<strong>ETH converter</strong>} />
+        {items.map(item => ( 
+          <Converter key={item.id} cryptoName={item.name} exchangeRate={item.conversionRate} header={<strong>{item.name} converter</strong>} /> 
+        ))}
       </ThemeContext.Provider>
 
       <br/><br/>
