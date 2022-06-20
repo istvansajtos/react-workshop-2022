@@ -3,9 +3,20 @@ import './App.css';
 import Converter from './Converter.js';
 import ThemeContext, { themes }  from './ThemeContext.js';
 
+function useCachedState(key, defaultValue) {
+  const storedValue = window.localStorage.getItem(key);
+  const [state, setState] = useState(() => JSON.parse(storedValue) || defaultValue);
+
+  useEffect(() => {
+    window.localStorage.setItem(key, JSON.stringify(state));
+  }, [state]);
+
+  return [state, setState];
+}
+
 function App() {
-  const [theme, setTheme] = useState(themes.light);
-  const [premium, setPremium] = useState(false);
+  const [theme, setTheme] = useCachedState('theme', themes.light);
+  const [premium, setPremium] = useCachedState('premium', false);
   const [items, setItems] = useState([]);
 
   useEffect(()=> {
@@ -31,7 +42,7 @@ function App() {
 
       <br/><br/>
 
-      <select onChange={event => setTheme(event.target.value == "light" ? themes.light : themes.dark)} >
+      <select onChange={event => setTheme(event.target.value === "light" ? themes.light : themes.dark)} value={theme.name}>
           <option value="light">Light</option>
 					<option value="dark">Dark</option>
 			</select>
