@@ -11,7 +11,7 @@ function Converter({cryptoName, exchangeRate, header}) {
     return (
         <span className='box'>
             {header}<br/>
-            <Amount name="Euros" onChangeHandler={handleChange}/>
+            <Amount name="Euros" onChangeHandler={handleChange} focus={cryptoName == "Ethernium"}/>
             <Amount name={cryptoName} value={convertedValue} readOnly={true} />
         </span>
     );
