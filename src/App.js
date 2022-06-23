@@ -3,6 +3,7 @@ import './App.css';
 import Converter from './Converter.js';
 import PremiumConvesion from './PremiumConversion.js';
 import ThemeContext, { themes }  from './ThemeContext.js';
+import ThemeSwitch from './ThemeSwitch.js';
 
 export function useCachedState(key, defaultValue) {
   const storedValue = window.localStorage.getItem(key);
@@ -36,11 +37,8 @@ function App() {
       </ThemeContext.Provider>
 
       <br/><br/>
-
-      <select onChange={event => setTheme(event.target.value === "light" ? themes.light : themes.dark)} value={theme.name}>
-          <option value="light">Light</option>
-					<option value="dark">Dark</option>
-			</select>
+    
+      <ThemeSwitch eventHandler={event => setTheme(event.target.value === "light" ? themes.light : themes.dark)} theme={theme} />
 
       <br/><br/>
 
