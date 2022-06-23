@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import Converter from './Converter.js';
+import PremiumConvesion from './PremiumConversion.js';
 import ThemeContext, { themes }  from './ThemeContext.js';
+import ThemeSwitch from './ThemeSwitch.js';
 
-function useCachedState(key, defaultValue) {
+export function useCachedState(key, defaultValue) {
   const storedValue = window.localStorage.getItem(key);
   const [state, setState] = useState(() => JSON.parse(storedValue) || defaultValue);
 
@@ -16,7 +18,6 @@ function useCachedState(key, defaultValue) {
 
 function App() {
   const [theme, setTheme] = useCachedState('theme', themes.light);
-  const [premium, setPremium] = useCachedState('premium', false);
   const [items, setItems] = useState([]);
 
   useEffect(()=> {
@@ -27,11 +28,6 @@ function App() {
     })
   }, [])
 
-  const premiumSection =
-    premium === true ?
-      <span><g-emoji class="g-emoji" alias="gem" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f48e.png">💎</g-emoji> Premium conversion</span> : 
-      <button type="button" onClick={() => setPremium(true)}>Become Premium</button>;
-
   return (
     <div className="App">
       <ThemeContext.Provider value={theme}>
@@ -41,15 +37,12 @@ function App() {
       </ThemeContext.Provider>
 
       <br/><br/>
-
-      <select onChange={event => setTheme(event.target.value === "light" ? themes.light : themes.dark)} value={theme.name}>
-          <option value="light">Light</option>
-					<option value="dark">Dark</option>
-			</select>
+    
+      <ThemeSwitch eventHandler={event => setTheme(event.target.value === "light" ? themes.light : themes.dark)} theme={theme} />
 
       <br/><br/>
 
-      {premiumSection}
+      <PremiumConvesion/>
     </div>
   );
 }
